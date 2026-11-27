@@ -1,6 +1,6 @@
 // Local interactions only. No login, payments, uploads or cvmax API requests.
 (() => {
-  const notice = () => window.alert('这是首页静态 mock，暂未接入后台服务。');
+  const notice = () => window.alert('服务暂不可用，请稍后再试。');
   const carousels = [];
   document.querySelectorAll('.slick-slider').forEach(slider => {
     const track = slider.querySelector('.slick-track');
