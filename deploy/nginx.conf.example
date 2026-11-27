@@ -1,0 +1,18 @@
+# 合并进现有 nginx 配置前，替换 root；HTTPS 需另配有效证书。
+# 此示例不自动配置 DNS、不申请证书、不修改备案接入。
+server {
+    listen 80;
+    server_name hypercurvature.com www.hypercurvature.com;
+    root /var/www/hypercurvature;
+    index index.html;
+
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    location ~ /\. {
+        deny all;
+    }
+}
