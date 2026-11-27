@@ -33,10 +33,11 @@
     const bullets = [...slider.querySelectorAll('.swiper-pagination-bullet-custom')];
     let index = 0;
     function show() {
-      const count = innerWidth < 768 ? 1 : innerWidth < 1024 ? 2 : 3;
-      const width = (slider.clientWidth - (count - 1) * 24) / count;
-      slides.forEach(e => { e.style.width = `${width}px`; e.style.marginRight = '24px'; });
-      track.style.transform = `translate3d(-${index * (width + 24)}px,0,0)`;
+      // Each source slide is one full page containing a three-column card grid.
+      // Size the page, not each card; dividing again renders nine narrow cards.
+      const width = slider.clientWidth;
+      slides.forEach(e => { e.style.width = `${width}px`; e.style.marginRight = '0px'; });
+      track.style.transform = `translate3d(-${index * width}px,0,0)`;
       bullets.forEach((e, i) => e.classList.toggle('swiper-pagination-bullet-active-custom', i === index));
     }
     bullets.forEach((e, i) => e.addEventListener('click', () => { index = Math.min(i, slides.length - 1); show(); }));
